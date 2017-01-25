@@ -2,8 +2,8 @@
 %{!?scl:%global pkg_name %{name}}
 
 Name:           %{?scl_prefix}python-six
-Version:        1.3.0
-Release:        4%{?dist}
+Version:        1.10.0
+Release:        1%{?dist}
 Summary:        Python 2 and 3 compatibility utilities
 
 Group:          Development/Languages
@@ -52,6 +52,9 @@ This is the Python 2 build of the module.
 
 
 %changelog
+* Wed Jan 25 2017 Tucker <tucker@altiscale.com> - 1.10.0-1
+- Update to version 1.10.0
+
 * Tue Nov 19 2013 Tomas Tomecek <ttomecek@redhat.com> - 1.3.0-4
 - bump release to be greater than build in RHEL-7
 
