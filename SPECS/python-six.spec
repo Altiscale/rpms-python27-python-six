@@ -29,12 +29,12 @@ This is the Python 2 build of the module.
 
 %build
 %{?scl:scl enable %{scl} - << \EOF}
-%{__python2} setup.py build
+%{__python} setup.py build
 %{?scl:EOF}
 
 %install
 %{?scl:scl enable %{scl} - << \EOF}
-%{__python2} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+%{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 %{?scl:EOF}
 
 # disable tests: rhscl doesn't contain pytest and tkinter
