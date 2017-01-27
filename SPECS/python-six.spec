@@ -12,11 +12,7 @@ URL:            http://pypi.python.org/pypi/six/
 Source0:        http://pypi.python.org/packages/source/s/six/six-%{version}.tar.gz
 
 BuildArch:      noarch
-BuildRequires:  %{?scl_prefix}python-devel
-# RHSCL-1.1: pytest and tkinter are not in scl -- disable tests
-# For use by selftests:
-#BuildRequires:  pytest
-#BuildRequires:  tkinter
+BuildRequires:  scl-utils-build %{?scl_prefix}python-devel
 
 %description
 python-six provides simple utilities for wrapping over differences between
@@ -25,26 +21,17 @@ Python 2 and Python 3.
 This is the Python 2 build of the module.
 
 %prep
-%setup -q -n six-%{version}
+%setup -q -n %{pkg_name}-%{version}
 
 %build
 %{?scl:scl enable %{scl} - << \EOF}
-%{__python} setup.py build
+%{python27__python2} setup.py build
 %{?scl:EOF}
 
 %install
 %{?scl:scl enable %{scl} - << \EOF}
-%{__python} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
+%{python27__python2} setup.py install -O1 --skip-build --root $RPM_BUILD_ROOT
 %{?scl:EOF}
-
-# disable tests: rhscl doesn't contain pytest and tkinter
-#%%check
-#py.test -rfsxX test_six.py
-#%if 0%{?with_python3}
-#pushd %{py3dir}
-#py.test-%{python3_version} -rfsxX test_six.py
-#popd
-#%endif
 
 %files
 %doc LICENSE README documentation/index.rst
