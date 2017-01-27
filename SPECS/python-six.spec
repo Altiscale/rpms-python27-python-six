@@ -21,7 +21,7 @@ Python 2 and Python 3.
 This is the Python 2 build of the module.
 
 %prep
-%setup -q -n %{pkg_name}-%{version}
+%setup -q -n six-%{version}
 
 %build
 %{?scl:scl enable %{scl} - << \EOF}
